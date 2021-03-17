@@ -39,7 +39,7 @@ router.post('/', function(req, res)
 		!req.body.firstName.toString().match(/^[a-zA-Z]+$/))
 	{
 		res.status(400);
-		res.json({message: "Bad Request"});
+		res.json({message: "Incorrectly formated information"});
 	}
 	else
 	{
@@ -63,7 +63,7 @@ router.put('/:socialSecurityNumber', function(req, res)
 		!req.body.firstName.toString().match(/^[a-zA-Z]+$/))
 	{
 		res.status(400);
-		res.json({message: "Bad Request"});
+		res.json({message: "Incorrectly formated information or wrong Social security number"});
 	}
 	else
 	{
@@ -91,7 +91,7 @@ router.put('/:socialSecurityNumber', function(req, res)
 			if(people[updateIndex].socialSecurityNumber != parseInt(req.body.socialSecurityNumber))
 			{
 				res.status(400);
-				res.json({message: "Bad Request"});
+				res.json({message: "Cannot change Social security number"});
 			}
 			else
 			{
@@ -118,6 +118,7 @@ router.delete('/:socialSecurityNumber', function(req, res)
 		
 	if(deleteIndex === -1)
 	{
+		res.status(404);
 		res.json({message: "Not found"});
 	}
 	else
