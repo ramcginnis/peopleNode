@@ -43,15 +43,16 @@ router.post('/', function(req, res)
 	}
 	else
 	{
-		people.push(
+		var newPerson = 
 		{
 			firstName: req.body.firstName,
 			lastName: req.body.lastName, 
 			dateOfBirth: req.body.dateOfBirth, 
 			email: req.body.email, 
 			socialSecurityNumber: parseInt(req.body.socialSecurityNumber)
-		});
-		res.json({message: "New person added."});
+		}
+		people.push(newPerson);
+		res.json(newPerson);
 	}
 });
 
@@ -63,7 +64,7 @@ router.put('/:socialSecurityNumber', function(req, res)
 		!req.body.firstName.toString().match(/^[a-zA-Z]+$/))
 	{
 		res.status(400);
-		res.json({message: "Incorrectly formated information or wrong Social security number"});
+		res.json({message: "Incorrectly formated information"});
 	}
 	else
 	{
@@ -76,15 +77,16 @@ router.put('/:socialSecurityNumber', function(req, res)
 		
 		if(updateIndex === -1)
 		{
-			people.push(
-			{
-				firstName: req.body.firstName,
-				lastName: req.body.lastName, 
-				dateOfBirth: req.body.dateOfBirth, 
-				email: req.body.email, 
-				socialSecurityNumber: parseInt(req.body.socialSecurityNumber)
-			});
-			res.json({message: "New person added."});
+			var newPerson = 
+		{
+			firstName: req.body.firstName,
+			lastName: req.body.lastName, 
+			dateOfBirth: req.body.dateOfBirth, 
+			email: req.body.email, 
+			socialSecurityNumber: parseInt(req.body.socialSecurityNumber)
+		}
+			people.push(newPerson);
+			res.json(newPerson);
 		}
 		else
 		{
